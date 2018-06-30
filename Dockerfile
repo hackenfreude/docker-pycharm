@@ -1,8 +1,6 @@
-ARG OPENJDK_TAG=8u171-jdk
-
 FROM buildpack-deps:stretch-curl as downloader
 
-ARG PYCHARM_VERSION=2018.1.3
+ARG PYCHARM_VERSION=2018.1.4
 
 ADD https://download.jetbrains.com/python/pycharm-community-${PYCHARM_VERSION}.tar.gz.sha256 pycharm-community-${PYCHARM_VERSION}.tar.gz.sha256
 
@@ -13,7 +11,9 @@ RUN sha256sum -c pycharm-community-${PYCHARM_VERSION}.tar.gz.sha256
 RUN mkdir /opt/pycharm && tar -C /opt/pycharm --strip-components=1 -xvf pycharm-community-${PYCHARM_VERSION}.tar.gz
 
 
-FROM openjdk:${OPENJDK_TAG} as pycharm
+FROM python:3.6.6-stretch as pycharm
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install openjdk-8-jdk
 
 COPY --from=downloader /opt/pycharm /opt/pycharm
 
