@@ -11,7 +11,7 @@ RUN sha256sum -c pycharm-community-${PYCHARM_VERSION}.tar.gz.sha256
 RUN mkdir /opt/pycharm && tar -C /opt/pycharm --strip-components=1 -xvf pycharm-community-${PYCHARM_VERSION}.tar.gz
 
 
-FROM python:3.6.6-stretch as pycharm
+FROM python:3.7.0-stretch as pycharm
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install openjdk-8-jdk libcanberra-gtk-module libcanberra-gtk3-module
 
