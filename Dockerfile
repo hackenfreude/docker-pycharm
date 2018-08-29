@@ -1,6 +1,6 @@
 FROM buildpack-deps:stretch-curl as downloader
 
-ARG PYCHARM_VERSION=2018.1.4
+ARG PYCHARM_VERSION=2018.2.2
 
 ADD https://download.jetbrains.com/python/pycharm-community-${PYCHARM_VERSION}.tar.gz.sha256 pycharm-community-${PYCHARM_VERSION}.tar.gz.sha256
 
